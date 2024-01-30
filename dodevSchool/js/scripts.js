@@ -56,20 +56,18 @@ function OrdenarPorIdade(arrayAlunos) {
 }
 
 function OrdenarPorNome(arrayAlunos) {
-  arrayAlunos.sort((a, b) => {
-    let nomeA = a.Nome.toUpperCase()
-    let nomeB = b.nome.toUpperCase()
-    nomeA - nomeB
-  })
+  arrayAlunos.sort((a, b) => b.Nome - a.Nome)
+  return arrayAlunos
 }
 
 function CalcularMedia(arrayAlunos) {
   let totalNotas = 0
-  let media
+  let media = 0
   for (let index = 0; index < arrayAlunos.length; index++) {
-    totalNotas = totalNotas + arrayAlunos[index].Nota
+    totalNotas += parseInt(arrayAlunos[index].Nota)
   }
-  media = totalNotas / arrayAlunos.length
+  media = (totalNotas / arrayAlunos.length)
+  console.log(media)
   return media
 }
 
