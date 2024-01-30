@@ -2,33 +2,75 @@
 ////////////////// FAÇA O SEU CÓDIGO AQUI \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////////////////////////////////////////////
 
+// Você deve criar um sistema de alunos que seja possível cadastrar um novo aluno, ordenar os alunos por nota, ordenar os alunos por idade, ordenar os alunos por nome, obter a média das notas e a quantidade de alunos cadastrados;
+
+// Crie uma classe "Aluno" com as propriedades: Nome, Idade e Nota;
+
+
+// Crie um construtor que preencha as 3 propriedades;
+
+
+// Crie um array para armazenar os Alunos cadastrados;
+
+// Crie uma função "CadastrarAluno()" que recebe três parâmetros: nome, idade e nota. Nesta função crie um novo objeto de aluno com as informações  recebidas via parâmetro, adicione esse objeto ao array de alunos e retorne o objeto Aluno. Antes de salvar no array, valide se já não existe um objeto com o mesmo Nome, para evitar duplicidade.
+
+
+
+
 class Aluno {
-  
+  Nome
+  Idade
+  Nota
+  constructor(nome, idade, nota) {
+    this.Nome = nome
+    this.Idade = idade
+    this.Nota = nota
+  }
 }
 
 // Array
+let arrayAlunos = []
 
 
 //funções projeto
 
-function CadastrarAluno() {
-  
+function CadastrarAluno(nome, idade, nota) {
+  let novoAluno = new Aluno(nome, idade, nota)
+
+  if (!arrayAlunos.includes(novoAluno.Nome)) {
+    arrayAlunos.push(novoAluno)
+    return novoAluno
+  } else {
+    console.log("O aluno ja existe")
+  }
 }
 
-function OrdenarPorNota() {
- 
+function OrdenarPorNota(arrayAlunos) {
+  arrayAlunos.sort((a, b) => a.Nota - b.Nota)
+  return arrayAlunos
 }
 
-function OrdenarPorIdade() {
-
+function OrdenarPorIdade(arrayAlunos) {
+  arrayAlunos.sort((a, b) => a.Idade - b.Idade)
+  return arrayAlunos
 }
 
-function OrdenarPorNome() {
-
+function OrdenarPorNome(arrayAlunos) {
+  arrayAlunos.sort((a, b) => {
+    let nomeA = a.Nome.toUpperCase()
+    let nomeB = b.nome.toUpperCase()
+    nomeA - nomeB
+  })
 }
 
-function CalcularMedia(){
-
+function CalcularMedia(arrayAlunos) {
+  let totalNotas = 0
+  let media
+  for (let index = 0; index < arrayAlunos.length; index++) {
+    totalNotas = totalNotas + arrayAlunos[index].Nota
+  }
+  media = totalNotas / arrayAlunos.length
+  return media
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -101,7 +143,7 @@ const saveAluno = (nome, idade, nota, done = 0, save = 1) => {
   // Utilizando dados da localStorage
 
   alunoList.appendChild(aluno);
-  
+
 
   const media = document.querySelector("#media");
   media.textContent = CalcularMedia(arrayAlunos).toFixed(2)
