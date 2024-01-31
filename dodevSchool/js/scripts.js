@@ -56,7 +56,18 @@ function OrdenarPorIdade(arrayAlunos) {
 }
 
 function OrdenarPorNome(arrayAlunos) {
-  arrayAlunos.sort((a, b) => b.Nome - a.Nome)
+  arrayAlunos.sort((a, b) => {
+    let nomeA = a.Nome
+    let nomeB = b.Nome
+
+    if (nomeA < nomeB) {
+      return -1
+    } else if (nomeA > nomeB) {
+      return 1
+    } else {
+      return 0
+    }
+  })
   return arrayAlunos
 }
 
